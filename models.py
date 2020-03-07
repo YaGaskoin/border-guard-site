@@ -13,6 +13,8 @@ migrate = Migrate()
 
 
 class Post(db.Model):
+    __tablename__ = "post"
+    __searchable__ = ['title']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     body = db.Column(db.Text())

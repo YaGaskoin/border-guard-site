@@ -24,8 +24,8 @@
             <ul class="nav">
                 <li><a class="navan" href="/">Новости</a></li>
                 <li><a class="navan" href="{{url_for('alerts')}}">Объявления</a></li>
-                <li><a class="navan" href="">О нас</a></li>
-                <li><a class="navan" href="">Контакты</a></li>
+                <li><a class="navan" href="{{ url_for('about') }}">О нас</a></li>
+                <li><a class="navan" href="{{ url_for('contacts') }}">Контакты</a></li>
                 <li>
                     <form method="POST" action="{{url_for('index')}}">
                         <input type="text" name="query">
@@ -33,10 +33,10 @@
                     </form>
                     <br>
                     {%if not current_user.is_authenticated%}
-                    <a href="/login">Войти как редактор</a>
+                    <a href="/login" class="enter">Войти как редактор</a>
                     {%endif%}
                     {%if current_user.is_authenticated%}
-                    <a href="/logout">Выход</a>
+                    <a href="/logout" class="enter">Выход</a>
                     {%endif%}
                 </li>
             </ul>

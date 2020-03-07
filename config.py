@@ -13,6 +13,7 @@ class Conf(object):
     DROPZONE_MAX_FILE_EXCEED = 10
     DROPZONE_DEFAULT_MESSAGE = 'Перетащите файлы сюда'
     DROPZONE_PARALLEL_UPLOADS = 0
+    WHOOSH_BASE = 'whoosh'
 
 
 UPLOAD_FOLDER = 'static/images'

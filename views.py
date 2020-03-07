@@ -16,7 +16,7 @@ import json
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST' and request.form.get('query'):
-        posts = Post.query.filter(Post.title == request.form.get('query') or Post.title == request.form.get('query').capitalize())
+        posts = Post.query.msearch(request.form.get('query'), fields=["title"])
     else:
         posts = Post.query.order_by(Post.id.desc())
     page = request.args.get('page')
@@ -139,8 +139,8 @@ def update_post(slug):
 
 @app.route('/delete/<slug>', methods=['GET', 'POST'])
 def delete_post(slug):
-    last_post=Post.query.order_by(Post.id.desc()).first()
-    last_alert=Alert.query.order_by(Alert.id.desc()).first()
+    last_post = Post.query.order_by(Post.id.desc()).first()
+    last_alert = Alert.query.order_by(Alert.id.desc()).first()
     if request.method == 'POST':
         p = Post.query.filter(Post.slug == slug).first()
         photos = Photos.query.filter(Photos.post_id == p.id).all()
@@ -176,6 +176,20 @@ def create_alert():
                            last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
 
 
+@app.route('/contacts')
+def contacts():
+    last_post = Post.query.order_by(Post.id.desc()).first()
+    last_alert = Alert.query.order_by(Alert.id.desc()).first()
+    return render_template('contacts.html', last_post=last_post,
+                           last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
+
+
+@app.route('/about_us')
+def about():
+    last_post = Post.query.order_by(Post.id.desc()).first()
+    last_alert = Alert.query.order_by(Alert.id.desc()).first()
+    return render_template('about_us.html', last_post=last_post,
+                           last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
 
 
 
