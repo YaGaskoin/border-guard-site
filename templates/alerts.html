@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{%block links%}
+<link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+<link rel="stylesheet" href="../static/alert.css">
+{%endblock%}
+
+{%block content_title%}
+    Объявления
+{%endblock%}
+
+{%block content%}
+    {%for alert in res%}
+        <div class="content">
+        <p class="right">{{alert[0].created.strftime("%d.%m.%Y")}} в {{alert[0].created.strftime("%H:%M")}}</p>
+        <p>{{alert[0].body}}</p>
+        <img class="alert_img" src="{{alert[1]}}">
+            {%if current_user.is_authenticated  and current_user.login == alert[0].author%}
+                <form method="POST" action="{{url_for('alerts')}}" onsubmit="return confirm('Вы действительно хотите удалить это объявление?');">
+                    <input type="text" name="slug" value="{{alert[0].slug}}" style="display: none;">
+                    <input type="submit" value="Удалить">
+                </form>
+            {%endif%}
+         </div>
+    {%endfor%}
+{%endblock%}

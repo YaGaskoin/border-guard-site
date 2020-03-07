@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+
+{%block links%}
+    <link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../static/index.css">
+
+{%endblock%}
+
+{%block content_title%}
+    Новости
+{%endblock%}
+
+{%block content%}
+
+<div class="content">
+{%for post in pages.items%}
+    <div>
+        <p class="date"><span>{{post.created.strftime("%d.%m.%Y")}} в {{post.created.strftime("%H:%M")}}</span></p>
+    <a class="name" href="{{url_for('post_detail', slug=post.slug)}}"><h3>{{post.title}}</h3></a>
+    <p style="word-break: break-all; width: 84%;">{{post.body[:200]}}...</p>
+        <a class="next" href="{{url_for('post_detail', slug=post.slug)}}">Читать далее >></a>
+        <br>
+        </div>
+
+{%endfor%}
+    </div>
+<div class="pagination">
+{%if pages.has_prev%}
+    <a class="prev_arr" href="/?page={{pages.prev_num}}">< </a>
+
+{%endif%}
+{%if pages.page > 1 and pages.page < 3%}
+    <a class="number" href="/?page={{pages.page-1}}">{{pages.page-1}}</a>
+
+{%endif%}
+{%if pages.page >= 3%}
+    <a class="number" href="/?page={{pages.page-2}}">{{pages.page-2}}</a>
+    <a class="number" href="/?page={{pages.page-1}}">{{pages.page-1}}</a>
+
+
+
+{%endif%}
+
+    <span class="cur_page">{{pages.page}}</span>
+
+{%if pages.pages - pages.page > 1%}
+    <a class="number" href="/?page={{pages.page+1}}">{{pages.page+1}}</a>
+    <a class="number" href="/?page={{pages.page+2}}">{{pages.page+2}}</a>
+
+{%endif%}
+{%if pages.pages  - pages.page > 0 and pages.pages  - pages.page < 2%}
+    <a class="number" href="/?page={{pages.page+1}}">{{pages.page+1}}</a>
+
+{%endif%}
+
+{%if pages.has_next%}
+    <a class="next_arr" href="/?page={{pages.next_num}}">></a>
+
+{%endif%}
+</div>
+
+{%endblock%}
+
+
+{%block right_content%}
+
+
+{%endblock%}

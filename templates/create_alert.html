@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block links%}
+    <link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../static/create_alert.css">
+{%endblock%}
+
+{%block content_title%}
+    Написать объявление
+{%endblock%}
+
+{%block content%}
+    <div class="content">
+    <form  enctype=multipart/form-data method="POST" action="{{url_for('create_alert')}}">
+        <label>Содержание</label><br>
+        <textarea rows="15" class="body" name="body" placeholder="Написать..."></textarea><br>
+        <label>Документ</label><br>
+        <input type="file" name="file"><br><br>
+        <input  type="submit" value="Создать">
+    </form>
+        </div>
+{%endblock%}

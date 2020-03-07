@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+
+{%block links%}
+  <link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+  <link rel="stylesheet" href="../static/post.css">
+{%endblock%}
+
+{%block content_title%}
+ {{post.title}}
+
+{%endblock%}
+
+{%block content%}
+<div class="content">
+ <p style="word-break: break-all; text-indent: 2em;">{{post.body}}</p><br>
+<div class="fotorama" data-navposition="bottom" data-nav="thumbs">
+ {%for photo in photos%}
+  <img src="../{{photo.link}}">
+ {%endfor%}
+</div>
+{%if current_user.is_authenticated and post.author == current_user.login%}
+    <form id="collestform" action="{{url_for('update_post', slug=post.slug)}}" method="GET">
+        <input type="submit" value="Редактировать">
+    </form>
+    <form id="myCoolForm" action="{{url_for('delete_post', slug=post.slug)}}" method="POST"
+          onsubmit="return confirm('ВЫ действительно хотите удалить эту запись?');">
+        <input class="del" type="submit" value="Удалить">
+    </form>
+{%endif%}
+    </div>
+{%endblock%}
+

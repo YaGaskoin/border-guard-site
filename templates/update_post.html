@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{%block links%}
+<link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+<link rel="stylesheet" href="../static/update_post.css">
+
+
+{%endblock%}
+
+{%block content_title%}
+Редактировать новость
+
+{%endblock%}
+
+{%block content%}
+<div class="content">
+<form id="create_form"  method="POST" action="{{url_for('update_post', slug=slug)}}">
+    <label>Заголовок</label><br>
+    <input class="title" type="text"  name="title" value="{{title}}"><br>
+    <label>Содержание</label><br>
+    <textarea rows="15" class="body" name="body">{{body}}</textarea><br>
+    <input id="upload-btn" type="submit" value="Изменить">
+
+
+</form>
+    </div>
+
+
+{%endblock%}

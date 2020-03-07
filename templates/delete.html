@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+
+{% block links%}
+    <link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../static/delete.css">
+{%endblock%}
+
+{%block content_title%}
+    Страница удаления
+{%endblock%}
+
+{%block content%}
+    {%if status == True%}
+        <p>Запись успешно удалена</p>
+    {%else%}
+        <p>Ошибка при удалении записи</p>
+    {%endif%}
+
+{%endblock%}

@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+{%block links%}
+<link rel="stylesheet" href="../static/bootstrap-grid.min.css">
+<link rel="stylesheet" href="../static/create_post.css">
+<script src="../static/dropzone.js"></script>
+
+{{dropzone.load_css()}}
+{{dropzone.load_js()}}
+{%endblock%}
+
+{%block content_title%}
+Добавить новость
+
+{%endblock%}
+
+{%block content%}
+<div class="content">
+<form id="create_form" enctype="multipart/form-data" method="POST" action="{{url_for('create_post')}}">
+    <label>Заголовок</label><br>
+    <input class="head" type="text" placeholder="Написать..." name="title"><br>
+    <label>Содержание</label><br>
+    <textarea rows="10" class="body" placeholder="Написать..." name="body"></textarea><br>
+    <label>Добавить фото</label><br>
+    <input id="upload-btn" type="submit" value="Создать">
+
+</form>
+{{dropzone.create(action="/create_post")}}
+    {{ dropzone.config(redirect_url=url_for('create_post')) }}
+    {{ dropzone.config(custom_init='dz = this;document.getElementById("upload-btn").addEventListener("click", function handler(e) {dz.processQueue();});',
+                 custom_options='autoProcessQueue: false, addRemoveLinks: true') }}
+</div>
+
+{%endblock%}
