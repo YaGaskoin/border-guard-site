@@ -4,19 +4,18 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pillow = "*"
 
 [packages]
-flask = "*"
-flask-migrate = "*"
-flask-sqlalchemy = "*"
-psycopg2 = "*"
-fire = "*"
-flask-admin = "*"
-flask-security = "*"
-flask-dropzone = "*"
-json = "*"
-pil = "*"
-pillow = "*"
+flask = "==1.1.1"
+flask-migrate = "==2.5.2"
+flask-sqlalchemy = "==2.4.1"
+psycopg2 = "==2.8.4"
+fire = "==0.2.1"
+flask-admin = "==1.5.4"
+flask-security = "==3.0.0"
+flask-dropzone = "==1.5.4"
+pillow = "==7.0.0"
 
 [requires]
 python_version = "3.7"
