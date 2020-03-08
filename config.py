@@ -1,6 +1,6 @@
 class Conf(object):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:@localhost:5432/pogran'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:daniel1234@localhost:3306/pogran'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'ключ'
     SECURITY_PASSWORD_SALT = 'salt'

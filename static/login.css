@@ -204,3 +204,16 @@ h2{
 .content{
     padding-left: 20px;
 }
+
+.enter{
+    text-decoration: none;
+    color: black;
+     background: #DFEDD6;
+    padding: 3px 5px;
+    border-radius: 5px;
+
+}
+
+.enter:hover{
+    color: white;
+}

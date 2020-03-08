@@ -13,7 +13,7 @@ import io
 import json
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST' and request.form.get('query'):
         posts = Post.query.msearch(request.form.get('query'), fields=["title"])
@@ -42,10 +42,11 @@ def alerts():
         db.session.commit()
     res = []
     alerts = Alert.query.all()
-    for i in range(0, len(alerts)):
-        res.append([])
-        res[i].append(alerts[i])
-        res[i].append(Photos.query.filter(Photos.alert_id == alerts[i].id).first().link)
+    if alerts:
+        for i in range(0, len(alerts)):
+            res.append([])
+            res[i].append(alerts[i])
+            res[i].append(Photos.query.filter(Photos.alert_id == alerts[i].id).first().link)
 
     last_post = Post.query.order_by(Post.id.desc()).first()
     last_alert = Alert.query.order_by(Alert.id.desc()).first()
@@ -184,7 +185,7 @@ def contacts():
                            last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
 
 
-@app.route('/about_us')
+@app.route('/')
 def about():
     last_post = Post.query.order_by(Post.id.desc()).first()
     last_alert = Alert.query.order_by(Alert.id.desc()).first()

@@ -219,3 +219,7 @@ h2{
 .enter:hover{
     color: white;
 }
+
+#href:hover {
+    color:white;
+}

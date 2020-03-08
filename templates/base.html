@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12">
             <ul class="nav">
-                <li><a class="navan" href="/">Новости</a></li>
+                <li><a class="navan" href="{{ url_for('index') }}">Новости</a></li>
                 <li><a class="navan" href="{{url_for('alerts')}}">Объявления</a></li>
                 <li><a class="navan" href="{{ url_for('about') }}">О нас</a></li>
                 <li><a class="navan" href="{{ url_for('contacts') }}">Контакты</a></li>
@@ -84,25 +84,41 @@
                         {{last_alert.created.strftime("%H:%M")}}</p>
                 </div>
                 {%endif%}
-                {%if not current_user.is_authenticated and last_post and last_alert%}
+                {%if  last_post or last_alert%}
                     <div class="info_menu" style="overflow:hidden">
                     <h3>Последние изменения</h3>
+                        {% if last_post %}
                     <a href="url_for('index')"><strong>Новости >></strong></a>
                     <p>Обновлены - {{weekDays[last_post.created.weekday()]}}
                         {{last_post.created.day}}
                         {{months[(last_post.created.month) - 1]}} в
                         {{last_post.created.strftime("%H:%M")}}</p>
+                            {% endif %}
+                    {% if last_alert %}
                     <a href="url_for('alerts')"><strong>Объявления >></strong></a>
                     <p>Обновлены - {{weekDays[last_alert.created.weekday()]}}
                         {{last_alert.created.day}}
                         {{months[(last_alert.created.month) - 1]}} в
                         {{last_alert.created.strftime("%H:%M")}}</p>
+                        {% endif %}
                 </div>
                 {%endif%}
 
 
                 {%block right_content%}
+
                 {%endblock%}
+                <div style="text-align:center; width: 96%">
+                    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
+
+<!-- VK Widget -->
+<div id="vk_groups"></div>
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 3, width: "auto"}, 73136377);
+</script>
+                </div>
+                <br>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%2381b65c&amp;ctz=Europe%2FMoscow&amp;title=%D0%9A%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C&amp;showPrint=0&amp;showCalendars=0&amp;showNav=0&amp;showTitle=0&amp;showTabs=0&amp;showTz=0&amp;showDate=1" style="border:solid 1px #777" width="97%" height="200" frameborder="0" scrolling="no"></iframe>
             </div>
         </div>
     </div>
