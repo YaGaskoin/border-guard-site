@@ -185,3 +185,50 @@ h2{
 .enter:hover{
     color: white;
 }
+@media all and (max-width: 1200px) {
+    .info_menu_auth p {
+        text-indent: 0em;
+        margin-left: 2em;
+    }
+    .info_menu_auth h3 {
+        text-indent: 0em;
+        margin-left: 30px;
+    }
+}
+
+@media all and (max-width: 992px) {
+    .info_menu_auth p {
+        text-indent: 0em;
+        margin-left: 1em;
+
+    }
+    .info_menu_auth h3 {
+        text-indent: 0em;
+        margin-left: 16px;
+    }
+    .info_menu_auth a {
+        text-indent: 0em;
+        margin-left: 16px;
+    }
+    .moder_menu a {
+        font-size: 17px;
+        text-indent: 0em;
+        margin-left: 16px;
+    }
+    .moder_menu h3 {
+        text-indent: 0em;
+        margin-left: 16px;
+    }
+}
+
+.info_menu_auth{
+    width: 96%;
+}
+
+.info_menu{
+    width: 96%;
+}
+
+.vk{
+    width: 96%;
+}

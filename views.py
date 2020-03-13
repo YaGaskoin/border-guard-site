@@ -51,8 +51,8 @@ def alerts():
     last_post = Post.query.order_by(Post.id.desc()).first()
     last_alert = Alert.query.order_by(Alert.id.desc()).first()
 
-    return render_template('alerts.html', res=res, last_post=last_post,
-                           last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
+    return render_template('alerts.html', res=res, last_post=last_post, last_alert=last_alert, weekDays=rusWeekDays,
+                           months=rusMonths)
 
 
 @app.route('/create_post', methods=['GET', 'POST'])
@@ -149,6 +149,7 @@ def delete_post(slug):
             os.remove(photo.link)
         Photos.query.filter(Photos.post_id == p.id).delete()
         Post.query.filter(Post.slug == slug).delete()
+        db.session.commit()
         return render_template('delete.html', status=True, last_post=last_post,
                                last_alert=last_alert, weekDays=rusWeekDays, months=rusMonths)
 
