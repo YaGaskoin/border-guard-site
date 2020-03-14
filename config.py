@@ -1,5 +1,5 @@
 class Conf(object):
-    DEBUG = True
+    DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:daniel1234@localhost:3306/pogran'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'ключ'
